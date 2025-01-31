@@ -1,33 +1,28 @@
 function toggleMenu() {
     let menu = document.getElementById("menu");
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "block";
-    }
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
 
 function mostrarSeccion(id) {
     let secciones = document.querySelectorAll(".seccion");
     secciones.forEach(seccion => {
         seccion.classList.remove("activa");
-        seccion.style.display = "none";
     });
 
-    let seccionActiva = document.getElementById(id);
-    seccionActiva.style.display = "block";
-    setTimeout(() => {
-        seccionActiva.classList.add("activa");
-    }, 50);
+    document.getElementById(id).classList.add("activa");
 
-    document.getElementById("menu").style.display = "none";
+    // Ocultar menú después de seleccionar
+    let menu = document.getElementById("menu");
+    menu.style.display = "none";
 }
 
 function toggleInfo(id) {
     let info = document.getElementById(id);
-    if (info.style.display === "block") {
-        info.style.display = "none";
+    if (info.classList.contains("mostrar")) {
+        info.classList.remove("mostrar");
     } else {
-        info.style.display = "block";
+        document.querySelectorAll(".info").forEach(el => el.classList.remove("mostrar"));
+        info.classList.add("mostrar");
     }
 }
+
